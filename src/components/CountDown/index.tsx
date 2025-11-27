@@ -1,5 +1,10 @@
+import type { TaskStateModel } from '../../models/TaskStateModel';
 import styles from './styles.module.css';
 
-export function CountDown() {
-  return <div className={styles.container}>00:00</div>;
+type CountDownProps = {
+  formatedSecondsRemaining: string;
+};
+
+export function CountDown({ formatedSecondsRemaining }: CountDownProps) {
+  return <div className={styles.container}>{formatedSecondsRemaining}</div>;
 }
