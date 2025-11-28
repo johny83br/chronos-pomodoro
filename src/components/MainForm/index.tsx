@@ -1,4 +1,4 @@
-import { PlayCircleIcon } from 'lucide-react';
+import { PlayCircleIcon, StopCircleIcon } from 'lucide-react';
 import { Cycles } from '../Cycles';
 import { Input } from '../Input';
 import { Button } from '../Button';
@@ -19,6 +19,15 @@ export function MainForm() {
 
   const nextCycle = getNextCycle(state.currentCycle);
   const nextCycleType = getNextCycleType(nextCycle);
+
+  function handleInterruptTask() {
+    setState(prevState => ({
+      ...prevState,
+      activeTask: null,
+      secondsRemaining: 0,
+      formatedSecondsRemaining: '00:00',
+    }));
+  }
 
   function handleCreateNewTask(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -68,16 +77,38 @@ export function MainForm() {
           //   setTaskName(e.target.value);
           // }}
           // value={taskName}
+          disabled={!!state.activeTask}
         />
       </div>
       <div className='formRow'>
         <p>Próximo intervalo é de {state.config.workTime}min.</p>
       </div>
+      {state.currentCycle > 0 && (
+        <div className='formRow'>
+          <Cycles />
+        </div>
+      )}
       <div className='formRow'>
-        <Cycles></Cycles>
-      </div>
-      <div className='formRow'>
-        <Button icon={<PlayCircleIcon />}></Button>
+        {!state.activeTask && (
+          <Button
+            aria-label='Iniciar nova tarefa'
+            title='Iniciar nova tarefa'
+            type='submit'
+            icon={<PlayCircleIcon />}
+            key='btn_submit'
+          />
+        )}
+        {!!state.activeTask && (
+          <Button
+            aria-label='Parar tarefa em andamento'
+            title='Parar tarefa em andamento'
+            type='button'
+            color='red'
+            onClick={handleInterruptTask}
+            icon={<StopCircleIcon />}
+            key='btn_interrupt'
+          />
+        )}
       </div>
     </form>
   );
