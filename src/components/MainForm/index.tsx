@@ -2,6 +2,7 @@ import { PlayCircleIcon, StopCircleIcon } from 'lucide-react';
 import { Cycles } from '../Cycles';
 import { Input } from '../Input';
 import { Button } from '../Button';
+import { Tips } from '../Tips';
 import { useRef } from 'react';
 import type { TaskModel } from '../../models/TaskModel';
 import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
@@ -66,7 +67,7 @@ export function MainForm() {
         />
       </div>
       <div className='formRow'>
-        <p>Próximo intervalo é de {state.config.workTime}min.</p>
+        <Tips />
       </div>
       {state.currentCycle > 0 && (
         <div className='formRow'>
