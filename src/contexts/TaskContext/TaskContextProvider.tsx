@@ -1,9 +1,10 @@
-import { useEffect, useReducer } from 'react';
+import { useEffect, useReducer, useRef } from 'react';
 import { initialTaskState } from './initialTaskState';
 import { TaskContext } from './TaskContext';
 import { taskReducer } from './taskReducer';
 import { TimerWorkerManager } from '../../workers/TimerWorkerManager';
 import { TaskActionTypes } from './taskActions';
+import { loadBeep } from '../../utils/loadBeep';
 
 type TaskContextProviderProps = {
   children: React.ReactNode;
@@ -11,15 +12,17 @@ type TaskContextProviderProps = {
 
 export function TaskContextProvider({ children }: TaskContextProviderProps) {
   const [state, dispatchTask] = useReducer(taskReducer, initialTaskState);
+  const playBeepRef = useRef<() => ReturnType<typeof loadBeep> | null>(null);
 
   const worker = TimerWorkerManager.getInstance();
 
   worker.onmessage((event: MessageEvent) => {
     const countDownSeconds = event.data;
-    console.log('Message from worker:', event.data);
-
     if (countDownSeconds <= 0) {
-      console.log('Worker COMPLETED');
+      if (playBeepRef.current) {
+        playBeepRef.current();
+        playBeepRef.current = null;
+      }
       dispatchTask({
         type: TaskActionTypes.COMPLETE_TASK,
       });
@@ -30,17 +33,22 @@ export function TaskContextProvider({ children }: TaskContextProviderProps) {
         payload: { secondsRemaining: countDownSeconds },
       });
     }
-    // Here you can handle messages from the worker and dispatch actions if needed
   });
 
   useEffect(() => {
     if (!state.activeTask) {
-      console.log('No active task, terminating worker.');
       worker.terminate();
     }
     worker.postMessage(state);
-    console.log('TaskContext state changed:', state);
   }, [worker, state]);
+
+  useEffect(() => {
+    if (state.activeTask && playBeepRef.current === null) {
+      playBeepRef.current = loadBeep();
+    } else {
+      playBeepRef.current = null;
+    }
+  }, [state.activeTask]);
 
   return (
     <TaskContext.Provider value={{ state, dispatchTask }}>
