@@ -16,6 +16,7 @@ export function MainForm() {
 
   // const [taskName, setTaskName] = useState('');
   const taskNameInput = useRef<HTMLInputElement>(null);
+  const lastTaskName = state.tasks[state.tasks.length - 1]?.name || '';
 
   // ciclos
 
@@ -70,6 +71,7 @@ export function MainForm() {
           // }}
           // value={taskName}
           disabled={!!state.activeTask}
+          defaultValue={lastTaskName}
         />
       </div>
       <div className='formRow'>
