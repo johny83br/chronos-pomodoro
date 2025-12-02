@@ -51,7 +51,7 @@ export function AboutPomodoro() {
           <p>
             Você pode configurar o tempo de foco, descanso curto e descanso
             longo do jeito que quiser! Basta acessar a{' '}
-            <RouterLink href='/settings'>página de configurações</RouterLink> e
+            <RouterLink href='/settings/'>página de configurações</RouterLink> e
             ajustar os minutos como preferir.
           </p>
 
@@ -97,7 +97,7 @@ export function AboutPomodoro() {
           <h3>📊 Histórico automático</h3>
           <p>
             Todas as suas tarefas e ciclos concluídos ficam salvos no{' '}
-            <RouterLink href='/history'>histórico</RouterLink>, com status de
+            <RouterLink href='/history/'>histórico</RouterLink>, com status de
             completas ou interrompidas. Assim, você consegue acompanhar sua
             evolução ao longo do tempo.
           </p>
