@@ -3,7 +3,7 @@ import { Cycles } from '../Cycles';
 import { Input } from '../Input';
 import { Button } from '../Button';
 import { Tips } from '../Tips';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import type { TaskModel } from '../../models/TaskModel';
 import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
 import { getNextCycle } from '../../utils/getNextCycle';
@@ -22,6 +22,12 @@ export function MainForm() {
 
   const nextCycle = getNextCycle(state.currentCycle);
   const nextCycleType = getNextCycleType(nextCycle);
+
+  useEffect(() => {
+    return () => {
+      showMessage.dismiss();
+    };
+  }, []);
 
   function handleInterruptTask() {
     showMessage.dismiss();

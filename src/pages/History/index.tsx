@@ -41,8 +41,15 @@ export function History() {
 
   useEffect(() => {
     if (!confirmClearHistory) return;
+    setConfirmClearHistory(false);
     dispatchTask({ type: TaskActionTypes.RESET_STATE });
   }, [confirmClearHistory, dispatchTask]);
+
+  useEffect(() => {
+    return () => {
+      showMessage.dismiss();
+    };
+  }, []);
 
   function handleSortTasks({ field }: Pick<SortTasksOptions, 'field'>) {
     const newDirection = sortTaksOptions.direction === 'desc' ? 'asc' : 'desc';
@@ -62,7 +69,9 @@ export function History() {
     showMessage.dismiss();
     showMessage.confirm(
       'Tem certeza que deseja apagar o histórico?',
-      confirmation => setConfirmClearHistory(confirmation),
+      confirmation => {
+        setConfirmClearHistory(confirmation);
+      },
     );
   }
 
