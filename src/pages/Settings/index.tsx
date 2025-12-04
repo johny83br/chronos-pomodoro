@@ -16,6 +16,7 @@ export function Settings() {
   const longBreakTimeInput = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
+    document.title = 'Configurações | Chronos Pomodoro';
     return () => {
       showMessage.dismiss();
     };
