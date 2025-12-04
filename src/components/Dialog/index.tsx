@@ -1,4 +1,4 @@
-import { ToastContentProps } from 'react-toastify';
+import type { ToastContentProps } from 'react-toastify';
 import { Button } from '../Button';
 import { ThumbsDownIcon, ThumbsUpIcon } from 'lucide-react';
 
