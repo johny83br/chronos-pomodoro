@@ -10,7 +10,7 @@ import { sortTasks, type SortTasksOptions } from '../../utils/sortTasks';
 import { TaskActionTypes } from '../../contexts/TaskContext/taskActions';
 
 import styles from './styles.module.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useEffectEvent, useState } from 'react';
 import { showMessage } from '../../adapters/showMessage';
 
 export function History() {
@@ -28,7 +28,7 @@ export function History() {
     },
   );
 
-  useEffect(() => {
+  useEffectEvent(() => {
     setSortTaskOptions(prevState => ({
       ...prevState,
       tasks: sortTasks({
@@ -37,11 +37,11 @@ export function History() {
         field: prevState.field,
       }),
     }));
-  }, [state.tasks]);
+  });
 
   useEffect(() => {
     if (!confirmClearHistory) return;
-    setConfirmClearHistory(false);
+    // setConfirmClearHistory(false);
     dispatchTask({ type: TaskActionTypes.RESET_STATE });
   }, [confirmClearHistory, dispatchTask]);
 
