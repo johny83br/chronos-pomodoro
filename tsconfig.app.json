@@ -9,7 +9,7 @@
       "DOM.Iterable"
     ],
     "module": "ESNext",
-    "types": [
+    "types": [ //importsNotUsedAsValues or verbatimModuleSyntax 
       "vite/client"
     ],
     "skipLibCheck": true,
@@ -26,7 +26,7 @@
     "noUnusedParameters": true,
     "erasableSyntaxOnly": false,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
   },
   "include": [
     "src"
