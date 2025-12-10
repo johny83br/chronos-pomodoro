@@ -1,73 +1,60 @@
-# React + TypeScript + Vite
+# A Técnica Pomodoro 🍅
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[https://johny83br-chronos-pomodoro.vercel.app/](https://johny83br-chronos-pomodoro.vercel.app/)
 
-Currently, two official plugins are available:
+A Técnica Pomodoro é uma metodologia de produtividade criada por Francesco
+Cirillo, que consiste em dividir o trabalho em blocos de tempo (os famosos
+"Pomodoros") intercalados com pausas. O objetivo é manter o foco total por um
+período curto e garantir descansos para evitar o cansaço mental.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Como funciona o Pomodoro tradicional?
 
-## React Compiler
+- 1️⃣ Defina uma tarefa que você deseja realizar.
+- 2️⃣ Trabalhe nela por 25 minutos sem interrupções.
+- 3️⃣ Faça uma pausa curta de 5 minutos.
+- 4️⃣ A cada 4 ciclos, faça uma pausa longa (geralmente 15 a 30 minutos).
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+## Mas no Chronos Pomodoro tem um diferencial 🚀
 
-## Expanding the ESLint configuration
+Nosso app segue o conceito original, mas com algumas melhorias e personalizações
+pra deixar o processo ainda mais eficiente:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### ⚙️ Personalização do tempo
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Você pode configurar o tempo de foco, descanso curto e descanso longo do jeito
+que quiser! Basta acessar a página de configurações e ajustar os minutos como
+preferir.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 🔁 Ciclos organizados em sequência
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+A cada ciclo completado, uma nova task é adicionada automaticamente ao seu
+histórico, e o app já sugere o próximo ciclo (foco ou descanso).
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+#### Nosso padrão:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Ciclos ímpares: Trabalho (foco).
+- Ciclos pares: Descanso curto.
+- Ciclo 8: Descanso longo especial, pra resetar o ciclo completo.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 🍅 Visualização dos ciclos
+
+Logo abaixo do cronômetro, você verá bolinhas coloridas representando os ciclos:
+
+- 🟡 Amarelo: Ciclo de trabalho (foco).
+- 🟢 Verde: Descanso curto.
+- 🔵 Azul: Descanso longo (aparece a cada 8 ciclos). Assim, você sempre sabe em
+  que parte do processo está e o que vem a seguir. Não precisa mais anotar no
+  papel ou ficar calculando de cabeça!
+
+### 📊 Histórico automático
+
+Todas as suas tarefas e ciclos concluídos ficam salvos no histórico, com status
+de completas ou interrompidas. Assim, você consegue acompanhar sua evolução ao
+longo do tempo.
+
+## Por que usar o Chronos Pomodoro?
+
+- ✅ Organize seu foco com clareza.
+- ✅ Trabalhe e descanse na medida certa.
+- ✅ Personalize seus próprios ciclos e tempos.
+- ✅ Acompanhe seu histórico automaticamente.
